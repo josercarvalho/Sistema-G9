@@ -1,0 +1,82 @@
+﻿@using SistemaG9.Web.Util
+
+@{
+    Layout = null;
+}
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Sistema G9", "Index", "Home", null, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            @if (SessionManager.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav">
+
+                    <!-- Perfil de Administrado exclusivo -->
+                    @if (SessionManager.UsuarioLogado.PerfilUsuarioId == 1)
+                    {
+                        <li>@Html.ActionLink("Matriz", "Matriz", "Rede")</li>
+                        <li>@Html.ActionLink("Níveis da Matriz", "Index", "Nivels")</li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Participantes <b class="caret"></b> </a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li role="menuitem">@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                                <li role="menuitem">@Html.ActionLink("Pendentes", "Pendentes", "Rede")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    <!-- Perfil de usuários para uso do Escritório -->
+                    @if (SessionManager.UsuarioLogado.PerfilUsuarioId == 3 && SessionManager.UsuarioLogado.Status == 1)
+                    {
+
+                    <!-- DropDown menu Minha Rede -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Minha Rede <b class="caret"></b> </a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li></li>
+                                <li role="menuitem">@Html.ActionLink("Meus Logins", "MeusLogins", "Clientes")</li>
+                                <li role="menuitem">@Html.ActionLink("Rede Gráfica", "RedeGrafica", "Rede")</li>
+                                @*<li role="menuitem" class="divider"></li>
+                                <li role="menuitem">@Html.ActionLink("Alterar Senha", "AlteraSenha", "Account")</li>*@
+                            </ul>
+                        </li>
+                        
+
+                    <!-- DropDown menu Cadastro -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Cadastros <b class="caret"></b> </a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li role="menuitem">@Html.ActionLink("Dados Pessoais", "Edit", "Clientes")</li>
+                                <li role="menuitem">@Html.ActionLink("Dados Bancários", "Index", "DadosBancarios")</li>
+                                <li role="menuitem" class="divider"></li>
+                                <li role="menuitem">@Html.ActionLink("Alterar Senha", "AlteraSenha", "Account")</li>
+                            </ul>
+                        </li>
+                    <!-- DropDown menu Movimento -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Doações <b class="caret"></b> </a>
+                            <ul class="dropdown-menu">
+                                <li role="menuitem">@Html.ActionLink("Recebidas", "Recebidas", "Doacoes")</li>
+                                <li role="menuitem" class="divider"></li>
+                                @*<li role="menuitem">@Html.ActionLink("À receber", "Liberadas", "Doacoes")</li>*@
+                                <li role="menuitem">@Html.ActionLink("Realizadas", "Realizadas", "Doacoes")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            }
+        </div>
+    </div>
+</div>

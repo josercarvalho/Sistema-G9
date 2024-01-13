@@ -1,0 +1,47 @@
+﻿<!-- Info boxes -->
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="ion ion-android-contacts"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Logins</span>
+                <span class="info-box-number">1</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="ion ion-cash"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Doações a Pagar</span>
+                <span class="info-box-number">@String.Format("{0:C}", @ViewBag.REALIZAR)</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <!-- fix for small devices only -->
+    <div class="clearfix visible-sm-block"></div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-social-usd-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Doações Recebidas</span>
+                <span class="info-box-number">@String.Format("{0:C}",@ViewBag.RECEBIDA)</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Pendentes</span>
+                <span class="info-box-number"> @ViewBag.Pendente</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="callout callout-info">
+    <h5 class="text-justify">
+        As doações são realizadas diretamente entre os participantes, você estará doando apenas por sua vontade para um de nossos outros afiliados, o sistema utiliza de uma fila para deixar justo que nenhum membro receba mais que o outro obedecendo a ordem de afiliação, caso faça sua doação você podera receber doações de possíveis novos membros.
+    </h5>
+</div>

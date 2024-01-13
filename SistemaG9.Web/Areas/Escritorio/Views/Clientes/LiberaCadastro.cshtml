@@ -1,0 +1,126 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Arquivos>
+
+@{
+    ViewBag.Title = "LiberaCadastro";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3>Liberar Pagamentos Pendentes</h3>
+        <div class="col-md-5 col-sm-3 text-right">
+            @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+        </div>
+    </div>
+    <div class="box-body">
+
+        @if ((bool)@Session["Autorizado"] == true)
+        {
+            <div class="callout callout-info">
+                <h4>ATENÇÃO!</h4>
+                <p>
+                    Você possui NOVAS DOAÇÕES a realizar para que possa ser HABILITADO a novos RENDIMENTOS.
+                </p>
+            </div>
+        }
+
+        @if (!@Model.Any())
+        {
+            <div class="callout callout-info">
+                <h4>Por enquanto não há comprovantes para serem aprovados, volte mais tarde ou divulgue mais</h4>
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Login</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Status</th>
+                        <th>Comprovante</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Login)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Email)
+                            </td>
+                            <td>
+                                <span class="label label-danger">PENDENTE</span>
+                            </td>
+                            <td>
+                                @*<a href="@Url.Content(@ViewBag.Comprovante + @item.Nome)" data-title="Comprovante" data-lightbox="@item.Cliente.Nome">Comprovante</a>*@
+                                <a href="@Url.Content(@ViewBag.Comprovante + @item.Nome)" target="_blanck" title="Comprovante">Comprovante</a>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group-table">
+                                    <button id="btn-confirma" class="btn btn-sm btn-default fa fa-check" title="Liberar Pagamento" data-doador="@item.ClienteId" data-recebedor="@item.Recebedor" data-nome="@item.Cliente.Nome"></button>
+
+                                    @*@Ajax.ActionLink(" Confirmar", "LiberaPagamento", "Clientes",
+                                    new
+                                    {
+                                        idCliente = @item.ClienteId,
+                                        idORigem = @item.Recebedor
+                                    },
+                                    new AjaxOptions
+                                    {
+                                        Confirm = "Confirmar Pagamento ?",
+                                        InsertionMode = InsertionMode.Replace,
+                                        LoadingElementId = "divAguarde",
+                                        HttpMethod = "Post",
+                                        OnSuccess = "window.location.reload()"
+                                    }, new { @class = "btn btn-success glyphicon glyphicon-check", @title = "Liberar Pagemento" })*@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
+
+<div id="divAguarde" class="progresso">
+    <img src="@Url.Content("~/Img/aguarde_g.gif")" alt="" />
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $(".btn-confirma").click(function (e) {
+                e.preventDefault();
+                var strUrl = @Url.Action("LiberaPagamento", "Doacoes");
+                var doador = $(this).data('doador');
+                var recebedor = $(this).data("recebedor");
+                var nome = $(this).data("nome");
+                bootbox.confirm("Confirma Pagamento de  " + nome + " ?", function (result) {
+                    if (result) {
+                        $("#progress").show();
+                        $.post(strUrl, { doador: doador, recebedor: recebedor }, function (data) {
+                            Exemple.show(data);
+                            setTimeout("Refresh()", 3000);                        
+                        }, "json");
+                    }
+                });
+                $("#progress").hide();
+            })
+
+            function Refresh() {
+                location.reload(true);
+            };
+        })
+    </script>
+}

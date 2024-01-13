@@ -1,0 +1,127 @@
+﻿@model SistemaG9.Domain.Models.DadosBancarios
+
+@{
+    ViewBag.Title = "Dados Bancários";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    @*<div class="alert alert-info">
+        <h3 class="text-center">
+            Seu cadastro ainda não está liberado. Preencha corretamente seus dados bancários.
+        </h3>
+    </div>*@
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Entre com os dados de sua conta.</h3>
+        </div>
+
+        <div class="box-body">
+            @using (Html.BeginForm("Create", "DadosBancarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BancoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("BancoId", null, " --- Selecione um Banco --- ", htmlAttributes: new { @class = "form-control" })
+                            @*@Html.DropDownListFor(model => model.BancoId, new SelectList(Model.Banco, "Value", "Text"), "  -----Selecione um Banco-----  ", new { @class = "form-control" })*@
+                            @Html.ValidationMessageFor(model => model.BancoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titular, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Titular, new { htmlAttributes = new { @class = "form-control textomaiusculo" } })
+                            @Html.ValidationMessageFor(model => model.Titular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoConta, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.TipoConta, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.TipoConta, new[] {
+                            new SelectListItem {Text = "Conta Poupança", Value = "0"},
+                            new SelectListItem {Text = "Conta Corrente", Value = "1"}
+                        }, " --- Selecione o tipo da conta --- ", new { @class = "form-control", })
+                            @Html.ValidationMessageFor(model => model.TipoConta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Agencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Agencia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Agencia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Conta, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Conta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Conta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Operacao, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Operacao, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Operacao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-primary">Salvar Registros</button>
+                                <a class="btn btn-danger" href="@Url.Action("Index","DadosBancarios")">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script>
+        $(function () {
+
+            $("#ddlEstados").on("change", function () {
+                var estadoId = $(this).val();
+                var url = '@Url.Action("LoadCidadeId", "Cadastro")';
+                //var url = '/Cadastro/LoadCidadeId/';
+                $.getJSON(url, { estadoId: estadoId },
+                function (estadosData) {
+                    $("#ddlCidades :gt(0)").remove();
+                    var select = $("#ddlCidades");
+                    select.attr('disabled', false);
+                    select.empty();
+                    select.append($('<option />', {
+                        value: 0,
+                        text: "Selecione a Cidade... "
+                    }));
+                    $.each(estadosData, function (index, itemData) {
+                        //alert(estadosData);
+                        //alert(itemData);
+                        select.append($('<option />', {
+                            value: itemData.Value,
+                            text: itemData.Text
+                        }));
+                    });
+                });
+            });
+        });
+    </script>*@
+}

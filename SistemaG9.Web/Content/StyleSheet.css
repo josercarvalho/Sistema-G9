@@ -1,0 +1,332 @@
+﻿/*body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}*/
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-image: url('../img/bkg-blu.jpg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	/* e agora a regra de ouro que fará a imagem ocupar todo o viewport */
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+	max-width: 380px;
+}*/
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+	/* Remove the padding we set earlier */
+	.masthead,
+	.marketing,
+	.footer {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+/* Customize the nav-justified links to be fill the entire space of the .navbar */
+
+.nav-justified {
+	background-color: #2780e3;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	margin: 0 auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	position: relative;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+	.nav-justified > li > a:hover {
+		background-color: blue; /* rgba(107, 199, 120, 1); */
+		background: blue; /* rgba(107, 199, 120, 1); */
+		color: white;
+	}
+
+	.nav-justified > li > a {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		margin-bottom: 0;
+		font-weight: bold;
+		color: #777;
+		text-align: center;
+		background-color: #e5e5e5; /* Old browsers */
+		background-image: -moz-linear-gradient(top, #f5f5f5 0%, #e5e5e5 100%); /* FF3.6+ */
+		background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+		background-image: -webkit-linear-gradient(top, #f5f5f5 0%,#e5e5e5 100%); /* Chrome 10+,Safari 5.1+ */
+		background-image: -o-linear-gradient(top, #f5f5f5 0%,#e5e5e5 100%); /* Opera 11.10+ */
+		background-image: linear-gradient(top, #f5f5f5 0%,#e5e5e5 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+		background-repeat: repeat-x; /* Repeat the gradient */
+		border-bottom: 1px solid #d5d5d5;
+	}
+
+	.nav-justified > .active > a,
+	.nav-justified > .active > a:hover,
+	.nav-justified > .active > a:focus {
+		background-color: #ddd;
+		background-image: none;
+		box-shadow: inset 0 3px 7px rgba(0,0,0,.15);
+	}
+
+	.nav-justified > li:first-child > a {
+		border-radius: 5px 5px 0 0;
+	}
+
+	.nav-justified > li:last-child > a {
+		border-bottom: 0;
+		border-radius: 0 0 5px 5px;
+	}
+
+@media (min-width: 768px) {
+	.nav-justified {
+		max-height: 52px;
+	}
+
+		.nav-justified > li > a {
+			border-right: 1px solid #d5d5d5;
+			border-left: 1px solid #fff;
+		}
+
+		.nav-justified > li:first-child > a {
+			border-left: 0;
+			border-radius: 5px 0 0 5px;
+		}
+
+		.nav-justified > li:last-child > a {
+			border-right: 0;
+			border-radius: 0 5px 5px 0;
+		}
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+	/* Remove the padding we set earlier */
+	.masthead,
+	.marketing,
+	.footer {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+/* Botão para voltar ao início da página */
+.back-to-top {
+	cursor: pointer;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	display: none;
+}
+
+.line-separator {
+	border-bottom: 1px solid #BABABA;
+	padding-bottom: 30px;
+}
+
+/* ordered list */
+ol.round {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+	ol.round li {
+		margin: 25px 0;
+		padding-left: 45px;
+	}
+
+		ol.round li.zero {
+			background: url("../img/orderedList0.png") no-repeat;
+		}
+
+		ol.round li.one {
+			background: url("../img/orderedList1.png") no-repeat;
+		}
+
+		ol.round li.two {
+			background: url("../img/orderedList2.png") no-repeat;
+		}
+
+		ol.round li.three {
+			background: url("../img/orderedList3.png") no-repeat;
+		}
+
+		ol.round li.four {
+			background: url("../img/orderedList4.png") no-repeat;
+		}
+
+		ol.round li.five {
+			background: url("../img/orderedList5.png") no-repeat;
+		}
+
+		ol.round li.six {
+			background: url("../img/orderedList6.png") no-repeat;
+		}
+
+		ol.round li.seven {
+			background: url("../img/orderedList7.png") no-repeat;
+		}
+
+		ol.round li.eight {
+			background: url("../img/orderedList8.png") no-repeat;
+		}
+
+		ol.round li.nine {
+			background: url("../img/orderedList9.png") no-repeat;
+		}
+
+/*
+	Controla a largura da tabela com barra de rolagem
+*/
+.FixedContainer {
+	float: right;
+	height: 250px;
+	width: 500px;
+	/*padding: 3px;*/
+	overflow: auto;
+}
+
+.FixedContent {
+	height: 100%;
+	/*padding: 1px;*/
+	overflow: auto;
+}
+
+.table tr:hover .btn-group-table {
+	visibility: visible;
+}
+
+.table tbody > tr > td {
+	vertical-align: middle;
+}
+
+.mnuTable {
+	width: 100px;
+}
+
+.btn-group-table {
+	visibility: hidden;
+}
+
+/*
+ * Animação de Processamentos
+ *
+ * Executado cada vez que uma atividade é enviada ao servidor para distração do usuário.
+ */
+#screen
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #000;
+}
+.progresso {
+	display: none;
+	position: fixed;
+	top: 360px;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -100px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: white;
+	border: 0.5px solid black;
+	height: 90px;
+	width: 130px;
+}
+
+.ui-loader {
+	background: none repeat scroll 0 0 #828282;
+	/*background: none repeat scroll 0 0% rgba(130, 130, 130, 0.8);*/
+	border: 1px solid #454545;
+	box-shadow: 0 0 3px #B1B1B1, 0 1px 0 #D5D5D5 inset;
+	border-radius: 3px;
+	color: #FFF;
+	padding: 20px 30px;
+	position: fixed;
+	text-align: center;
+	text-shadow: 0 -1px #6D6D6D;
+	width: 200px;
+	z-index: 103;
+}
+
+.spin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	width: 32px;
+	height: 32px;
+	background: url('images/spinner_g.gif') no-repeat scroll 0 0 transparent;
+	background-color: transparent;
+	background-image: url('images/spinner_g.gif');
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0 0;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: auto auto;
+	opacity: 0.8;
+}
+
+#ajaxBusy {
+	background: #222222 url('images/ajax-loader-black.gif') 20px 50% no-repeat;
+	color: #ffffff;
+	display: block;
+	font-size: 140%;
+	height: 60px;
+	left: 50%;
+	line-height: 60px;
+	margin: -30px 0 0 -85px;
+	padding: 0 20px;
+	position: fixed;
+	text-align: right;
+	top: 50%;
+	width: 170px;
+	z-index: 99999;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+}
+
+	#ajaxBusy p {
+		margin: 0;
+	}
+
+.textomaiusculo {
+	text-transform: uppercase;
+}
+
+.degradefundo {
+	background-image: url(../img/bg.jpg);
+	background-repeat: repeat-x;
+}

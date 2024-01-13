@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B375229D-DFA4-4864-B19D-E2C692C130C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SistemaG9.Domain</RootNamespace>
+    <AssemblyName>SistemaG9.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DemoException.cs" />
+    <Compile Include="Enum\Operadora.cs" />
+    <Compile Include="Enum\Sexo.cs" />
+    <Compile Include="Enum\TipoConta.cs" />
+    <Compile Include="Enum\TipoControle.cs" />
+    <Compile Include="Interfaces\Aplication\IAppServiceBase.cs" />
+    <Compile Include="Interfaces\Aplication\IClienteApp.cs" />
+    <Compile Include="Interfaces\Aplication\IDoacaoApp.cs" />
+    <Compile Include="Interfaces\Aplication\IHomeManagerApp.cs" />
+    <Compile Include="Interfaces\Aplication\IRedeApp.cs" />
+    <Compile Include="Interfaces\Aplication\IStartApp.cs" />
+    <Compile Include="Interfaces\Repositories\IArquivoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IBancoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ICidadeRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IClienteRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IDadosBancariosRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IDoacoesRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IEstadoRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IMatrizRepositorio.cs" />
+    <Compile Include="Interfaces\Repositories\INivelRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPaisRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IPerfilUsuarioRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRedeRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioBase.cs" />
+    <Compile Include="Interfaces\Services\IArquivoService.cs" />
+    <Compile Include="Interfaces\Services\IBancoService.cs" />
+    <Compile Include="Interfaces\Services\ICidadeService.cs" />
+    <Compile Include="Interfaces\Services\IClienteService.cs" />
+    <Compile Include="Interfaces\Services\IDadosBancariosService.cs" />
+    <Compile Include="Interfaces\Services\IDoacaoService.cs" />
+    <Compile Include="Interfaces\Services\IEstadoService.cs" />
+    <Compile Include="Interfaces\Services\IMatrizService.cs" />
+    <Compile Include="Interfaces\Services\INivelService.cs" />
+    <Compile Include="Interfaces\Services\IPerfilUsuarioService.cs" />
+    <Compile Include="Interfaces\Services\IRedeService.cs" />
+    <Compile Include="Interfaces\Services\IServiceBase.cs" />
+    <Compile Include="MetaData\ClientesMetaData.cs" />
+    <Compile Include="MetaData\DadosBancariosMetaData.cs" />
+    <Compile Include="Models\Arquivos.cs" />
+    <Compile Include="Models\Bancos.cs" />
+    <Compile Include="Models\Cidades.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\DadosBancarios.cs" />
+    <Compile Include="Models\Doacoes.cs" />
+    <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\Estados.cs" />
+    <Compile Include="Models\Mapping\ArquivoMap.cs" />
+    <Compile Include="Models\Mapping\BancoMap.cs" />
+    <Compile Include="Models\Mapping\CidadeMap.cs" />
+    <Compile Include="Models\Mapping\ClienteMap.cs" />
+    <Compile Include="Models\Mapping\DadosBancarioMap.cs" />
+    <Compile Include="Models\Mapping\DoacaoMap.cs" />
+    <Compile Include="Models\Mapping\EntradaMap.cs" />
+    <Compile Include="Models\Mapping\EstadoMap.cs" />
+    <Compile Include="Models\Mapping\MatrizMap.cs" />
+    <Compile Include="Models\Mapping\NivelMap.cs" />
+    <Compile Include="Models\Mapping\PaisMap.cs" />
+    <Compile Include="Models\Mapping\PerfilUsuarioMap.cs" />
+    <Compile Include="Models\Mapping\RedeMap.cs" />
+    <Compile Include="Models\Mapping\ReentradaMap.cs" />
+    <Compile Include="Models\Mapping\UpLineMap.cs" />
+    <Compile Include="Models\Matriz.cs" />
+    <Compile Include="Models\Nivel.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PerfilUsuario.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Rede.cs" />
+    <Compile Include="Models\Reentrada.cs" />
+    <Compile Include="Models\UpLine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArquivoService.cs" />
+    <Compile Include="Services\BancosService.cs" />
+    <Compile Include="Services\CidadeService.cs" />
+    <Compile Include="Services\ClienteService.cs" />
+    <Compile Include="Services\DadosBancariosService.cs" />
+    <Compile Include="Services\DoacaoService.cs" />
+    <Compile Include="Services\EstadoService.cs" />
+    <Compile Include="Services\MatrizService.cs" />
+    <Compile Include="Services\NivelService.cs" />
+    <Compile Include="Services\PerfilUsuarioService.cs" />
+    <Compile Include="Services\RedeService.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

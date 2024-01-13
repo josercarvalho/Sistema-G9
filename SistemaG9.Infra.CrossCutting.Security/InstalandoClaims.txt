@@ -1,0 +1,7 @@
+﻿Baixaremos os seguintes pacotes via nuget:
+
+    Install-Package Microsoft.AspNet.Identity.Owin -Version 2.1.0;
+    Install-Package Microsoft.AspNet.Identity.EntityFramework -Version 2.1.0;
+    Install-Package Microsoft.Owin.Security.OAuth -Version 3.0.0;
+    Install-Package Microsoft.Owin.Security.Cookies -Version 3.0.0;
+    Install-Package Microsoft.Owin.Host.SystemWeb -Version 3.0.0.

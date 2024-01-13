@@ -1,0 +1,295 @@
+﻿@model IEnumerable<SistemaG9.Web.ViewModels.ContatosViewModel>
+
+@{
+    ViewBag.Title = "Home Doacao";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    @*<h4 class="alert alert-danger">Seu acesso ao escritório virtual esta limitado até que suas doações pendentes sejam realizadas e confirmadas!!</h4>*@
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="text-center">@TempData["SuccessMessage"]</h4>
+        </div>
+    }
+
+    @if (TempData["FileErroMessage"] != null)
+    {
+        <div class="alert alert-info alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="text-center">@TempData["FileErroMessage"]</h4>
+        </div>
+    }
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Doações a Realizar</h3>
+        </div>
+
+        <div class="box-body">
+
+            @if (ViewBag.ArquivoEnviado == false)
+            {
+                foreach (var item in Model)
+                {
+                    @Html.Partial("_Contato", (Object)item)
+                }
+            }
+
+            <h5 class="text-justify">
+                As doações são realizadas diretamente entre os participantes, você estará doando apenas por sua vontade para um de nossos outros afiliados, o sistema utiliza de uma fila para deixar justo que nenhum membro receba mais que o outro obedecendo a ordem de afiliação, caso faça sua doação você podera receber doações de possíveis novos membros.
+            </h5>
+        </div>
+    </div>
+</section>
+
+@Html.Partial("_Upload")
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    @*<div class="spin"></div>*@
+    <img src="@Url.Content("~/img/ajax-loader.gif")" alt="" />
+    <h4>  Aguarde ... </h4>
+</div>
+
+<div class="bb-alert alert alert-info" style="display:none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/MyJS/example.js"></script>
+    <script src="~/Scripts/jquery.form.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.btn-enviar').click(function (e) {
+                e.preventDefault(e);
+
+                var id = $(this).data('id');
+                var nome = $(this).data("nome");
+                var doador = $(this).data('doador');
+                var recebedor = $(this).data('recebedor');
+                var nivel = $(this).data('nivel');
+                var tipo = $(this).data('tipo');
+
+                $('#myModal').modal('show');
+                $(".modal-body input[type=hidden]").val(id);
+                $(".modal-body span").text(nome);
+                $("#inputDoador").val(doador);
+                $("#inputRecebedor").val(recebedor);
+                $("#inputNivel").val(nivel);
+                $("#inputTipo").val(tipo);
+                $("#inputNome").val(nome);
+
+                //e.preventDefault(e);
+                //$('#formEnviar').submit();
+                //$(".btn-enviar").addClass("disabled");
+                //$("#progress").show();
+            });
+
+            $('.modal-link').click(function (e) {
+                e.preventDefault(e);
+                var id = $(this).data('cliente');
+                var cb = $(this).data('banco');
+                CarregaDadosBanco(id, cb);
+            });
+
+            var CarregaDadosBanco = function (id, cb) {
+                var strUrl = "/Escritorio/Home/GetConta/";
+                $.ajax(
+                {
+                    type: 'GET',
+                    url: strUrl,
+                    dataType: 'json',
+                    cache: false,
+                    async: true,
+                    data: { id: id, cb: cb } ,
+                    success: function (data) {
+                        if (data.erro.length == 0) {
+                            var banco = data.dados.banco;
+                            var titular = data.dados.titular;
+                            var tipo = data.dados.tipo;
+                            var agencia = data.dados.agencia;
+                            var conta = data.dados.conta;
+                            var operacao = data.dados.operacao;
+                            bootbox.dialog({
+                                title: "Dados Bancários para Doação.",
+                                message: '<div class="row">  ' +
+                                    '<div class="col-md-12"> ' +
+                                    '<form class="form-horizontal"> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Banco</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + banco + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Titular</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + titular + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Tipo da Conta</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + tipo + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Agència</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + agencia + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Conta</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + conta + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '<div class="form-group"> ' +
+                                    '<label class="col-md-4 control-label" for="name">Operação ou Variação</label> ' +
+                                    '<div class="col-md-8"> ' +
+                                    '<span class="help-block"> ' + operacao + ' </span> </div> ' +
+                                    '</div> ' +
+                                    '</div> </div>' +
+                                    '</form> </div>  </div>',
+                                buttons: {
+                                    success: {
+                                        label: "OK",
+                                        className: "btn-success"
+                                    }
+                                }
+                            })
+                        }
+                    }
+                });
+            };
+        });
+
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+
+    </script>
+
+    @*<script>
+            $('.btn-enviar').on("click", function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var nome = $(this).data("nome");
+                var doador = $(this).data('doador');
+                var recebedor = $(this).data('recebedor');
+                var nivel = $(this).data('nivel');
+                var tipo = $(this).data('tipo');
+                $('#myModal').modal('show');
+                $(".modal-body input[type=hidden]").val(id);
+                $(".modal-body span").text(nome);
+                $("#inputDoador").val(doador);
+                $("#inputRecebedor").val(recebedor);
+                $("#inputNivel").val(nivel);
+                $("#inputTipo").val(tipo);
+            });
+        </script>
+
+    <script>
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+    </script>
+
+    <script>
+            (function () {
+
+                var bar = $('.progress-bar');
+                var percent = $('.progress-bar');
+                var status = $('.status');
+
+                $('form').ajaxForm({
+                    beforeSend: function () {
+                        status.empty();
+                        var percentVal = '0%';
+                        bar.width(percentVal)
+                        percent.html(percentVal);
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        var percentVal = percentComplete + '%';
+                        bar.width(percentVal)
+                        percent.html(percentVal);
+                    },
+                    success: function () {
+                        var percentVal = '100%';
+                        bar.width(percentVal)
+                        percent.html(percentVal);
+                    },
+                    complete: function (xhr) {
+                        status.html(xhr.responseText);
+                    }
+                });
+
+            })();
+        </script>*@
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $('.btn-enviar').click(function (e) {
+                    e.preventDefault(e);
+                    var data = new FormData(this);
+                    bootbox.confirm("Confirma Envio do arquivo ?", function (result) {
+                        if (result) {
+                            enviarArquivo(data);
+                            setTimeout(Refresh(), 3000);
+                        }
+                        else
+                        {
+                            $("#progress").hide();
+                        }
+                    });
+
+                    var enviarArquivo = function (data) {
+                        var strUrl = "/Home/EnviarArquivo";
+                        var form = $("#formEnviar").serialize();
+                        $("#progress").show();
+                        $.ajax({
+                            url: strUrl,
+                            type: 'post',
+                            dataType: 'json',
+                            data: { picture: data, form: form },
+                            success: function (data) {
+                                $("#progress").hide();
+                                bootbox.alert(data);
+                            },
+                            error: function (data) {
+                                bootbox.alert(data);
+                            },
+                            complete: function (data) {
+                                setTimeout(function () { Refresh() }, 3000);
+                                bootbox.alert(data);
+                            },
+                        });
+                        //$.post(strUrl, { picture: data, form: form }, function (data) {
+                        //    Example.show("Envio realizado com sucesso!");
+                        //}, "json");
+                    };
+                });
+            });
+        </script>*@
+}

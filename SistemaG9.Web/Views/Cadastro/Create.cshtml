@@ -1,0 +1,502 @@
+﻿@using System.Collections
+@model SistemaG9.Web.ViewModels.CadastroViewModel
+
+@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container box box-body" style="background-color: white">
+    <h2>Cadastro</h2>
+    <h4>Você está a poucos passos de concluir seu cadastro</h4>
+    <hr />
+
+    @using (Html.BeginForm("Create", "Cadastro", FormMethod.Post, new { @id = "form-wizard", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div id="wizard">
+                <h3>Acesso ao Sistema</h3>
+                <section>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", onkeyup = "this.value = Trim( this.value )" } })
+                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-3", onkeyup = "this.value = Trim( this.value )" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="confirmasenha">Confirma Senha</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="confirmasenha" id="confirmasenha">
+                        </div>
+                    </div>
+                </section>
+
+                <h3>Informações de Contato</h3>
+                <section class="FixedContent">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, "Nome Completo", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control textomaiusculo", @Title = "Entre com nome COMPLETO e sem ABREVEAÇÕES" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control textomaiusculo" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control textomaiusculo" } })
+                            @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Complemento, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "form-control textomaiusculo" } })
+                            @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control textomaiusculo" } })
+                            @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EstadoId, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @*@Html.EditorFor(model => model.EstadoId, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.EstadoId, new SelectList(ViewBag.Estado as IEnumerable, "EstadoId", "Nome"), "Selecione o Estado...", new { @id = "ddlEstados", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CidadeId, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @*@Html.EditorFor(model => model.CidadeId, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.CidadeId, Enumerable.Empty<SelectListItem>(), "Selecione a Cidade...", new { @id = "ddlCidades", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Operadora, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @*@Html.EditorFor(model => model.Operadora, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.Operadora, new[] {
+                                new SelectListItem {Text = "OI", Value = "OI"},
+                                new SelectListItem {Text = "TIM", Value = "TIM"},
+                                new SelectListItem {Text = "CLARO", Value = "CLARO"},
+                                new SelectListItem {Text = "VIVO", Value = "VIVO"},
+                                new SelectListItem {Text = "Outra", Value = "Outra"}
+                            }, " --- Selecione a Operadora Telefônica --- ", new { @class = "form-control", })
+                            @Html.ValidationMessageFor(model => model.Operadora, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WhatsApp, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.WhatsApp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WhatsApp, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SKYPE, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.SKYPE, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SKYPE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </section>
+
+                <h3>Dados Bancários</h3>
+                <section>
+                    <div class="form-group">
+                        @Html.Label("Banco", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DropDownList("BancoId", null, " --- Selecione um Banco --- ", htmlAttributes: new { @class = "form-control" })
+                            @*@Html.EditorFor(model => model.BancoId, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.ValidationMessageFor(model => model.BancoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titular, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Titular, new { htmlAttributes = new { @class = "form-control textomaiusculo", @Title = "Entre com o nome COMPLETO conforme titular da conta." } })
+                            @Html.ValidationMessageFor(model => model.Titular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoConta, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @*@Html.EditorFor(model => model.TipoConta, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.DropDownListFor(model => model.TipoConta, new[] {
+                                new SelectListItem {Text = "Conta Poupança", Value = "0"},
+                                new SelectListItem {Text = "Conta Corrente", Value = "1"}
+                            }, " --- Selecione o tipo da conta --- ", new { @class = "form-control", })
+                            @Html.ValidationMessageFor(model => model.TipoConta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Agencia, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Agencia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Agencia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Conta, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Conta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Conta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Operacao, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Operacao, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Operacao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </section>
+
+                <h3>Termos de Uso</h3>
+                <section>
+                    <textarea class="form-control text-justify" style="height: 90%; width: 90%;" rows="15">
+                        1.	Não existe nenhum tipo de investimento. O amigo DOADOR faz as suas DOAÇÕES de livre e espontânea vontade, sem coação ou influência de quem quer que seja, gratuitamente e sem condições ou encargos de qualquer natureza, do valor referente a cada etapa (nível) do sistema. <br /><br />
+                        2.	As doações por cada nível serão da seguinte forma: <br />
+                        a)	A 1ª entrada para doação terá o valor de doação de R$ 50,00. <br />
+                        b)	A doação do 1º nível abaixo para receber terá o valor de R$ 50,00 (cinquenta reais) para receber. <br />
+                        c)	A doação do 2º nível acima para doar e 2º abaixo para receber terá o valor de R$ 100,00 (cem reais). <br />
+                        d)	A doação do 3º nível acima para doar e 3º abaixo para receber terá o valor de R$ 400,00 (quatrocentos reais). <br />
+                        e)	A doação do 4º nível acima para doar e 4º abaixo para receber terá o valor de R$ 3.500,00 (três mil e quinhentos reais). <br /><br />
+                        3.	A matriz será formada da seguinte configuração:
+                        a)	1º nível 3 doadores de R$ 50,00 (cinquenta reais).
+                        b)	2º nível 9 doadores R$ 100,00 (cem reais).
+                        c)	3º nível 27 doadores R$ 400,00 (quatrocentos reais).
+                        d)	2º nível 81 doadores R$ 3.500,00 (três mil e quinhentos reais).
+                        NOTA1: Cada doador doará apenas 1 vez a cada nível.
+                        NOTA2: Detalhes sobre distribuição da matriz está contida na Apresentação de Negócios do SistemaG9.<br /><br />
+                        4.	O participante terá de ter, no mínimo, 30% de depósitos com comprovados no seu Escritório Virtual no 1º nível e 20% de depósitos com comprovados a partir do 2º nível.<br />
+                        5.	Não existe nenhuma promessa ou garantia de retorno financeiro fora do estipulado em cada nível.<br />
+                        6.	Para participar do SistemaG9 o DOADOR deve ser maior de 18 anos, podendo doar quantas vezes quiser a quantia estipulada para a 1ª entrada.<br />
+                        7.	Ao preencher seus dados no sistema, informe os dados reais para facilitar a comunicação. Todas as doações serão feitas através de depósitos em contas corrente, poupança ou digital, este será o meio que vamos trabalhar para agilizar o sistema.<br />
+                        8.	Caso não tenha conta corrente poupança ou digital, o participante poderá indicar uma conta corrente, poupança ou digital de um terceiro de sua confiança. Contudo o SistemaG9 não se responsabilizará por quaisquer irregularidades ou descumprimento de acordos entre as partes.<br />
+                        9.	Após realizar a doação, automaticamente você será alocado na matriz, de acordo com o nível.<br />
+                        11.	As DOAÇÕES são realizadas diretamente na conta corrente, poupança ou digital de cada participante doador.<br />
+                        12.	Todo participante DOADOR tem o direito de deixar de participar do sistema em qualquer nível do processo de doação. Para isso, basta não dar prosseguimento às DOAÇÔES, ou seja, deixar expirar as 24 horas estipuladas para a doação indicada pelo SistemaG9. Neste caso o próprio SistemaG9 eliminará ou repassará o seu login.<br />
+                        13.	O usuário terá o prazo de 24 horas para a ativação em todos os níveis, por isso é indispensável que o participante esteja atento ao seu Escritório Virtual, de preferência, em todos os turnos das 24 horas de cada dia.<br />
+                        14.	Em todos os níveis, o usuário terá até 24 horas após o sistema alocar o participante para fazer a doação ao recebedor da vez, estando passível de exclusão, no caso de não cumprimento do prazo estipulado de 24 horas.<br />
+                        15.	O usuário precisa convidar pelo menos três pessoas para ter certeza de que a rede continuará crescendo, muito embora não haja obrigatoriedade de indicação, uma vez que o cadastro será através de link único.<br />
+                        16.	De maneira a dar sustentabilidade e acelerar o processo de doação, o SistemaG9 criou o sistema de reentradas da seguinte maneira: no primeiro nível não haverá reentrada, no 2º nível terá 3 reentradas, no 3º nível terá 9 reentradas e no 4º nível terá 27 reentradas com as regras abaixo.<br />
+                        a)	Cada reentrada será no mesmo valor da 1ª entrada (R$ 50,00).<br />
+                        b)	As 3 reentradas no 2º nível deverão ser efetuadas após receber 9 doações (R$ 900,00).<br />
+                        c)	As 9 reentradas no 3º nível deverão obrigatoriamente ser efetuadas após receber 9 doações (R$ 3.600,00).<br />
+                        d)	As 27 reentradas no 4º nível deverão obrigatoriamente ser efetuadas após receber 3 doações (R$ 10.500,00).<br />
+                        17.	O sistema gerará automaticamente as reentradas e indicará os recebedores. Caso o usuário não efetue as doações das reentradas em 24 horas o cadastro será excluído do sistema em qualquer um dos 3 níveis acima e a consequente exclusão do login principal.<br />
+                        18.	Enquanto não forem efetuadas as doações e confirmação das reentradas o participante não terá acesso pleno a seu Escritório Virtual e nem receberá as doações restantes referentes ao nível em curso.<br />
+                    </textarea>
+                    <input id="termosuso" name="termosuso" type="checkbox">
+                    <label for="termosuso">Li a aceito os termos e condições.</label>
+                </section>
+            </div>
+        </div>
+    }
+    <div id="div-conclusao" class="alert alert-success" style="display: none;">
+        Seja bem-vindo,&nbsp;<strong><label id="div-conclusao-nome"></label></strong>!
+    </div>
+</div>
+
+<style>
+    .erro {
+        border-color: #b92c28 !important;
+    }
+</style>
+
+
+@section Scripts {
+    @*@Styles.Render("~/Content/jquerysteps")*@
+    <link href="~/Content/jquery.steps.css" rel="stylesheet" />
+
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/MyJS/example.js"></script>
+    <script src="~/Scripts/MyJS/methods_pt.js"></script>
+    <script src="~/Scripts/jquery.steps.js"></script>
+    @*@Scripts.Render("~/bundles/jquerysteps")*@
+    <script>
+
+        $(document).ready(function () {
+
+            var masks = ['(00) 00000-0000', '(00) 0000-00009'];
+
+            //Código para contornar o conflito do jquery mask com o jquery validate
+            $(function () {
+
+                $("#Telefone").mask(masks[1], {
+                    onKeyPress: function (val, e, field, options) {
+                        field.mask(val.length > 14 ? masks[0] : masks[1], options);
+                    }
+                });
+                $("#WhatsApp").mask(masks[1], {
+                    onKeyPress: function (val, e, field, options) {
+                        field.mask(val.length > 14 ? masks[0] : masks[1], options);
+                    }
+                });
+
+                $("#CPF").mask("999.999.999-99");
+                $("#CEP").mask("99.999-999");
+                $("#DataNascimento").mask("99/99/9999");
+
+                $("#ddlEstados").on("change", function () {
+                    var estadoId = $(this).val();
+                    @*var url = '@Url.Action("LoadCidadeId", "Cadastro")';*@
+                    var url = '/Cadastro/LoadCidadeId/';
+                    $.getJSON(url, { estadoId: estadoId },
+                        function (estadosData) {
+                            $("#ddlCidades :gt(0)").remove();
+                            var select = $("#ddlCidades");
+                            select.attr('disabled', false);
+                            select.empty();
+                            select.append($('<option/>', {
+                                value: 0,
+                                text: "Selecione a Cidade... "
+                            }));
+                            $.each(estadosData, function (index, itemData) {
+                                //alert(estadosData);
+                                //alert(itemData);
+                                select.append($('<option/>', {
+                                    value: itemData.Value,
+                                    text: itemData.Text
+                                }));
+                            });
+                        });
+                });
+
+            });
+
+            $("#wizard").steps({
+                headerTag: "h3",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                stepsOrientation: "vertical",
+                labels: {
+                    cancel: "Cancelar",
+                    finish: "Finalizar",
+                    next: "Próximo",
+                    previous: "Anterior"
+                },
+
+                onStepChanging: function (event, currentIndex, newIndex) {
+                    //Permitindo que o usuário possa voltar, mesmo que o passo atual esteja inválido
+                    if (currentIndex > newIndex) {
+                        return true;
+                    }
+
+                    var form = $('#form-wizard');
+
+                    //Retirando as classes de erro caso o usuário volte o passo
+                    if (currentIndex < newIndex) {
+                        // To remove error styles
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                        $(".body:eq(" + newIndex + ") .input-validation-error", form).removeClass("error");
+                    }
+
+                    //Desabilitando a validação de compos desabilitados ou escondidos
+                    form.validate().settings.ignore = ":disabled,:hidden";
+
+                    //Iniciando a validação, prevenindo que o usuário avançe de passo
+                    return form.valid();
+                },
+                onFinishing: function (event, currentIndex) {
+                    var form = $('#form-wizard');
+
+                    form.validate().settings.ignore = ":disabled,:hidden";
+
+                    return form.valid();
+                },
+                onFinished: function (event, currentIndex) {
+                    $('#form-wizard').submit();
+                    var nome = $("#Nome").val();
+                    $("#form-wizard").hide();
+                    $("#div-conclusao").show();
+                    $("#div-conclusao-nome").text(nome);
+                    setTimeout("Refresh()", 3000);
+                }
+            });
+        });
+
+        $("#form-wizard").validate({
+            rules: {
+                Nome: {
+                    required: true,
+                },
+                Login: {
+                    required: true,
+                },
+                Senha: {
+                    required: true,
+                },
+                Sexo: {
+                    required: true,
+                },
+                DataNascimento: {
+                    required: true,
+                },
+                CPF: {
+                    required: true,
+                },
+                Email: {
+                    required: true,
+                },
+                Endereco: {
+                    required: true,
+                },
+                Numero: {
+                    required: true,
+                },
+                Bairro: {
+                    required: true,
+                },
+                CEP: {
+                    required: true,
+                },
+                CidadeId: {
+                    required: true,
+                },
+                EstadoId: {
+                    required: true,
+                },
+                Telefone: {
+                    required: true,
+                },
+                confirmasenha: {
+                    equalTo: "#Senha"
+                },
+                BancoId: {
+                    required: true,
+                },
+                Titular: {
+                    required: true,
+                },
+                TipoConta: {
+                    required: true,
+                },
+                Agencia: {
+                    required: true,
+                },
+                Conta: {
+                    required: true,
+                },
+                termosuso: {
+                    required: true,
+                }
+            },
+            messages: {
+                nome: "",
+                email: "",
+                usuario: "",
+                senha: "",
+                confirmasenha: "Senhas não conferem.",
+                termosuso: "Você deve aceitar para finalizar.",
+            },
+            highlight: function (element) {
+                //adicionar border-color direto no element.id
+                $('#' + element.id).addClass('erro');
+            },
+            unhighlight: function (element) {
+                $('#' + element.id).removeClass('erro');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+    </script>
+
+    <script type="text/javaScript">
+        function Trim(str) {
+            return str.replace(/^\s+|\s+$/g, "");
+        }
+    </script>
+
+}

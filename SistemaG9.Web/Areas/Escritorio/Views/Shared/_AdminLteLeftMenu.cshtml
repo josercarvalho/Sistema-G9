@@ -1,0 +1,40 @@
+﻿@using SistemaG9.Web.Util
+
+@{
+    Layout = null;
+    var perfil = SessionManager.UsuarioLogado.PerfilUsuarioId;
+}
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="image">
+            <img src="~/img/SistemaG9.png" class="img-responsive" alt="User System" />
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        @if (SessionManager.IsAuthenticated)
+        {
+            <ul class="sidebar-menu">
+                <li class="header">MENU DE NAVEGAÇÃO</li>
+                <li><a href="@Url.Action("Index", "AdminLte")"><i class="active fa fa-home"></i>Página Inicial</a></li>
+
+                @if (perfil == 3)
+                {
+                    @Html.Partial("_MenuEscritorio");
+                }
+
+                @if (perfil == 1)
+                {
+                    @Html.Partial("_MenuAdmin");
+                }
+
+                <li class="header">DIVERSOS</li>
+                <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Fale Conosco</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-info"></i> Perguntas Frequêntes</a></li>
+                <li class="header">SAIR DO SISTEMA</li>
+                <li><a href="@Url.Action("Logoff", "Account")"><i class="fa fa-sign-out text-danger"></i> Saír</a></li>
+            </ul>
+        }
+    </section>
+    <!-- /.sidebar -->
+</aside>

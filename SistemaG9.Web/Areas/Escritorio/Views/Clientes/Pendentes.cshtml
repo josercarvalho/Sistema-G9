@@ -1,0 +1,114 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Doacoes>
+
+@{
+    ViewBag.Title = "Pendentes";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3>Listagem de Pagamentos Pendentes</h3>
+            <div class="box-tools pull-right">
+                @*@Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success", @Title = "Cadastrar" })*@
+                @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+            </div>
+        </div>
+        <div class="box-body">
+                <table class="table" id="tbl-pendentes">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cliente.Login)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cliente.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nivel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tipo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Valor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DataCadastro)
+                            </th>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.ConfirmaDoacao)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            @*<th></th>*@
+                        </tr>
+                    </thead>
+                    @if (!@Model.Any())
+                    {
+                        <tr><td colspan="6" class="text-center text-bold"><h3>Sem Pendências!</h3></td></tr>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cliente.Login)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nivel)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tipo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Valor)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                                    </td>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.ConfirmaDoacao)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    @*<td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.DoacoesId }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.DoacoesId }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.DoacoesId })
+                                        </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot></tfoot>}
+                </table>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tbl-pendentes").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+}

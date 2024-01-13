@@ -1,0 +1,66 @@
+﻿@model SistemaG9.Web.ViewModels.NomeTitularViewModel
+
+@{
+    ViewBag.Title = "ConfirmaNome";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    <div class="bb-alert text-bold text-danger">
+        <h2 class="text-center">A T E N Ç Ã O !!!</h2>
+        <h4 class="text-justify">
+            Devido alguns USUÁRIOS terem abreveado seus NOMES e TITULARES DA CONTA, estamos encarecidamente solicitando que confirmem seus <em>NOMES COMPLETOS e TITULARES DA CONTA</em>. <br>
+            Por motivo de segurança na hora dos depósitos para não causar enganos. <br />
+        </h4>        
+        <h4 class="text-center">
+            Agradecemos a sua atenção e colaboração.
+        </h4>
+        <h5 class="text-right">À DIRETORIA !</h5>
+    </div>
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Confirme seu NOME e TITULAR completos.</h3>
+        </div>
+        <div class="box-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control textomaiusculo", @Title = "Entre com nome COMPLETO e sem ABREVEAÇÕES" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titular, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Titular, new { htmlAttributes = new { @class = "form-control textomaiusculo", @Title = "Entre com o nome COMPLETO conforme titular da conta" } })
+                            @Html.ValidationMessageFor(model => model.Titular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-primary">Salvar Registros</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

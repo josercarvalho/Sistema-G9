@@ -1,0 +1,117 @@
+﻿@model SistemaG9.Web.ViewModels.RedeViewModel
+
+@{
+    ViewBag.Title = "Rede Gráfica";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
+
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <div class="col-md-7 col-xs-10">
+                <h3 class="box-title"><i class="fa fa-group"></i> Rede Gráfica</h3>
+                @using (Html.BeginForm("RedeGrafica", "Rede", FormMethod.Get, new { @class = "row" }))
+                {
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            @Html.DropDownList("apelido", null, "Selecione o Login...", new { @class = "form-control", @autofocus = "autofocus" })
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" title="Procurar">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="box-tools pull-right">
+                @*@Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success", @Title = "Cadastrar" })*@
+                @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+            </div>
+        </div>
+    </div>
+
+    <div class="box-body">
+        @Html.Partial("_Rede", (Object)Model)
+        <div class="alert alert-info " role="alert">
+            <strong>
+                Essa é sua rede gráfica, você pode acompanhar o crescimento dela por níveis ilimitados, basta clicar no icone de seus downlines. Clique sobre o login para obter informações de contato.
+            </strong>
+        </div>
+    </div>
+
+</section>
+
+@Html.Partial("_DetalheLogin");
+
+@section scripts {
+    <link href="~/Content/jquery.jOrgChart.css" rel="stylesheet" />
+    <link href="~/Content/customChart.css" rel="stylesheet" />
+    <link href="~/Content/prettify.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyJS/prettify.js"></script>
+    <script src="~/Scripts/MyJS/jquery.jOrgChart.js"></script>
+
+    <script>
+        $(function () {
+            $("#org").jOrgChart({
+                chartElement: '#chart-container'
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.modal-link').click(function (e) {
+                e.preventDefault(e);
+                var id = $(this).data('id');
+                CarregaContato(id);
+            });
+
+            var CarregaContato = function (id) {
+                var strUrl = "/Rede/GetContato/" + id;
+                $.ajax(
+                {
+                    type: 'GET',
+                    url: strUrl,
+                    dataType: 'json',
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        if (data.erro.length == 0) {
+                            $(".contato-nome span").text(data.dados.nome);
+                            $(".contato-login span").text(data.dados.login);
+                            $(".contato-telefone span").text(data.dados.telefone);
+                            $(".contato-email span").text(data.dados.email);
+                            $(".contato-whatsapp span").text(data.dados.whatsapp);
+                            $(".contato-skype span").text(data.dados.skype);
+                            $('#modal-contato').modal('show');
+                        } else {
+                            ExibeErro(data.erro);
+                        }
+                    },
+                    error: function (data) {
+                        ExibeErro(data.statusText);
+                    },
+                });
+            };
+
+            var ExibeErro = function (msg) {
+                $("#msgErroContato span").text(msg);
+                $("#msgErroContato").hide().removeClass('hide').fadeIn(500);
+                $("div.modal-header span").remove();
+                setTimeout(function () { $("#msgErroContato").fadeOut(500); }, 3000);
+            };
+        });
+    </script>
+
+}

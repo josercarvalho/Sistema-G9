@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Doacoes>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Doador</th>
+            @*<th>CPF</th>*@
+            <th>E-mail</th>
+            <th>WhatsApp</th>
+            <th>Status</th>
+            <th>Comprovante</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Cliente.Nome</td>
+                @*<td>@item.Cliente.CPF</td>*@
+                <td>@item.Cliente.Email</td>
+                <td>@item.Cliente.WhatsApp</td>
+                <td>
+                    <span class="label label-danger">PENDENTE</span>
+                </td>
+                <td class="text-center">
+                    <a target="_blank" href="@Url.Content(@ViewBag.CaminhoFile + @item.Comprovante)" title="Comprovante">Comprovante</a>
+                </td>
+                <td class="text-center">
+                    <button id="btn-confirma" class="btn btn-sm btn-success glyphicon glyphicon-check" title="Liberar Pagemento" data-id="@item.Doador" data-Nivel="@item.Nivel" data-receb="@item.Recebedor" data-nome="@item.Cliente.Nome"> Confirmar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

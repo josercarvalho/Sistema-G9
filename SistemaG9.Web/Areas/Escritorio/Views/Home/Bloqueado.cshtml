@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Bloqueado";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="text-center"><b>A G U A R D E !!!</b></h3>
+        <h4 class="text-center">@TempData["SuccessMessage"]</h4>
+    </div>
+    
+    @Html.Partial("_Detalhes")
+
+</section>
+

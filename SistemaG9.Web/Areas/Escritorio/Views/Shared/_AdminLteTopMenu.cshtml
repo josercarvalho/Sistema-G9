@@ -1,0 +1,30 @@
+﻿@using SistemaG9.Web.Util
+
+@{
+    ViewBag.Layout = null;
+}
+
+<header class="main-header">
+    <!-- Logo -->
+    @Html.ActionLink("Sistema G9", "Index", "Home", new { area = "Escritorio" }, new { @class = "navbar-brand logo" })
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+
+            @if (SessionManager.IsAuthenticated)
+            {
+                <div class="pull-right">
+                    <label class="navbar-brand">Olá @SessionManager.UsuarioLogado.Nome!</label>
+                    <form class="navbar-form navbar-left" role="search" action="@Url.Action("Logoff", "Account", new { area = "Escritorio" })">
+                        <button type="submit" class="glyphicon glyphicon-log-out btn btn-danger" title="Sair"></button>
+                    </form>
+                </div>
+            }
+        </div>
+    </nav>
+</header>

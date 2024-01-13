@@ -1,0 +1,44 @@
+.rede {
+	width: 100%;
+	min-width: 850px !important;
+	overflow: none;
+	height: auto;
+}
+
+.labelrede {
+	text-align:center;
+	font-weight: bold;
+}
+
+.buttonrede {
+	width: 60px;
+	height: 60px;
+	border-radius:25px;
+	margin: 2px auto auto auto;
+}
+
+.linerede {
+	width: 50%;
+	margin: auto;
+	border-top:1px dotted #4A0000;
+	border-left:1px dotted #4A0000;
+	border-right:1px dotted #4A0000;
+	text-align:center;
+	padding: 5px;
+}
+
+.linemiddle {
+	width: 25%;
+	margin: auto auto auto 50%;
+	border-left:1px dotted #4A0000;
+	text-align:center;
+	height: 15px;
+}
+
+.btnupgrade {
+	cursor: default;
+}
+
+.voltarrede {
+	margin: 20px;
+}

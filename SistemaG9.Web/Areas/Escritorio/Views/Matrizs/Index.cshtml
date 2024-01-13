@@ -1,0 +1,85 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Matriz>
+
+@{
+    ViewBag.Title = "Matriz";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border ">
+            <div class="col-md-7 col-xs-8">
+                <h3 class="box-title"><i class="fa fa-th-list"></i> Cadastro de Matrizes</h3>
+            </div>
+            <div class="box-tools pull-right">
+                @Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success", @Title = "Cadastrar" })
+                @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+            </div>
+        </div>
+
+        <div class="box-body">
+            <table class="table table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Niveis)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Integrantes)
+                    </th>
+                    @*<th>Ação</th>*@
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatrizId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Niveis)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Integrantes)
+                        </td>
+                        @*<td class="mnuTable">
+                                <div class="btn-group btn-group-table">
+                                    @Html.ActionLink(" ", "Create", "Nivel", new { id = item.MatrizId }, new { @class = "btn btn-default fa fa-list-ol", @Title = "Cadastrar Níveis da Matriz" })
+                                    @Ajax.ActionLink(" ", "_RelacaoNivel", "Matriz",
+                                        new
+                                        {
+                                            id = item.MatrizId,
+                                            nome = item.Nome
+                                        },
+                                        new AjaxOptions
+                                        {
+                                            InsertionMode = InsertionMode.Replace,
+                                            LoadingElementId = "progress",
+                                            UpdateTargetId = "divResultado",
+                                            HttpMethod = "GET"
+                                        }, new { @class = "btn btn-default fa fa-eye", @title = "Usuários do " + @item.Nome })
+                                </div>
+                            </td>*@
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div id="divResultado"></div>
+</section>
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    <div class="spin"></div>
+    <span>Aguarde ...</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

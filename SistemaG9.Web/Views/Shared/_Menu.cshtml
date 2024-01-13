@@ -1,0 +1,17 @@
+﻿<div class="bs-componet">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav nav-justified">
+                    <li id="li-mnu-Home">@Html.ActionLink("HOME", "Index", "Home", null, new { @class = "active" })</li>
+                    <li id="li-mnu-ComoFunciona">@Html.ActionLink("COMO FUNCIONA", "ComoFunciona", "Home")</li>
+                    <li id="li-mnu-Cadastro">@Html.ActionLink("CADASTRE-SE", "Create", "Cadastro")</li>
+                    @*<li id="li-mnu-Cadastro">@Html.ActionLink("ESCRITÓRIO", "Construcao", "Home")</li>*@
+                    <li id="li-mnu-Escritorio">@Html.ActionLink("ESCRITÓRIO", "Login", "Account", new { area = "Escritorio" }, new { @target = "_blanck" })</li>
+                    <li id="li-mnu-Faq">@Html.ActionLink("FAQ", "Faq", "Home")</li>
+                    <li id="li-mnu-Contato">@Html.ActionLink("CONTATO", "Construcao", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

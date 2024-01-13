@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Doacoes>
+
+@{
+    ViewBag.Title = "Pendentes";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <div class="col-md-7 col-xs-8">
+                <h3 class="box-title"><i class="fa fa-group"></i> Logins com Pendências</h3>
+            </div>
+            <div class="box-tools pull-right">
+                @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+            </div>
+        </div>
+
+        <div class="box-body">
+            <table class="table table-hover table-responsive" id="tbl-pendente">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cliente.Login)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cliente.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nivel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Doador)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recebedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tipo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Cadastrado Em")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Login)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nivel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Doador)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Recebedor)
+                            </td>
+                            <td>
+                                @if (item.Tipo.Equals(1))
+                                {
+                                    @Html.DisplayName("ENTRADA")
+                                }
+                                else if (item.Tipo.Equals(1))
+                                {
+                                    @Html.DisplayName("REENTRADA")
+                                }
+                                else
+                                {
+                                    @Html.DisplayName("OBRIGATÓRIA")
+                                }
+                                @*@Html.DisplayFor(modelItem => item.Tipo)*@
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataCadastro)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+    
+    <script type="text/javascript">
+        $(function () {
+            $("#tbl-pendente").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+}

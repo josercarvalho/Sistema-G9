@@ -1,0 +1,6 @@
+﻿@using SistemaG9.Web.Util
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#" id="lnk-ponto"><span class="fa fa-user"></span> Olá @SessionManager.UsuarioLogado.Nome</a></li>
+    <li><a href="@Url.Action("Logoff", "Account")"><span class="fa fa-sign-out"></span> Sair</a></li>
+</ul>

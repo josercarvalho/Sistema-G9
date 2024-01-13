@@ -1,0 +1,118 @@
+﻿@using SistemaG9.Web.Util
+
+@{
+    // Layout set automatially in _ViewStart.cshtml
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+    var perfilUser = SessionManager.UsuarioLogado.PerfilUsuarioId;
+
+    ViewBag.Title = "Sistema G9";
+    ViewBag.TitleSmall = "Version 1.0";
+}
+
+<section class="content">
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="text-center">@TempData["SuccessMessage"]</h4>
+        </div>
+    }
+
+    @if (SessionManager.UsuarioLogado.PerfilUsuarioId == 3)
+    {
+        <h3>Seja bem vindo ao seu Escritório Virtual</h3>
+
+
+        if (ViewBag.Comprovantes != null)
+        {
+            @Html.Partial("_Comprovantes", (Object)ViewBag.Comprovantes)
+        }
+        else
+        {
+            @Html.Partial("_Detalhes")
+        }
+    }
+    else
+    {
+        <h3>Seja bem vindo ao Painel Administrativo da G9</h3>
+
+        @Html.Partial("_Detalhes")
+    }
+
+</section>
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    @*<div class="spin"></div>*@
+    <img src="@Url.Content("~/img/ajax-loader.gif")" alt="" />
+    <h4>  Aguarde ... </h4>
+</div>
+
+<div class="bb-alert alert alert-info" style="display:none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/MyJS/example.js"></script>
+    <script src="~/Scripts/MyJS/methods_pt.js"></script>*@
+
+    <script>
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btn-success").on("click", function (e) {
+                e.preventDefault(e);
+                var doador = $(this).data('id');
+                var recebedor = $(this).data("receb");
+                var nome = $(this).data("nome");
+                var nivel = $(this).data("nivel");
+                debugger
+                bootbox.confirm("Confirma pagamento de " + nome + " ?", function (result) {
+                    if (result) {
+                        liberarPG(nivel, doador, recebedor);
+                    }
+                    $("#progress").hide();
+                });
+
+                var liberarPG = function (nivel, doador, recebedor) {
+                    var strUrl = "/Doacoes/LiberaPagamento";
+                    $("#progress").show();
+                    $.ajax({
+                        url: strUrl,
+                        type: 'post',
+                        dataType: 'json',
+                        data: { nivel: nivel, doador: doador, recebedor: recebedor },
+                        success: function (data) {
+                            $("#progress").hide();
+                            Example.show(data);
+                        },
+                        error: function (data) {
+                            bootbox.alert(data);
+                        },
+                        complete: function () {
+                            setTimeout(function () { Refresh() }, 3000);
+                        },
+                    });
+                };
+            });
+        });
+    </script>
+}
+

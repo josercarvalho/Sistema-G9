@@ -1,0 +1,174 @@
+﻿@model SistemaG9.Web.ViewModels.ContatosViewModel
+
+@{
+    var tipoDoacao = "";
+    if (@Model.Tipo == 0) { tipoDoacao = "INICIAL"; }
+    if (@Model.Tipo == 1) { tipoDoacao = "de REENTRADA"; }
+    if (@Model.Tipo == 2) { tipoDoacao = "OBRIGATÓRIA"; }
+    var ID = @Model.Recebedor;
+}
+
+<div class="box box-info box-solid">
+    <div class="box-header with-border">
+        <h2 class="box-title">@Model.ID - Doação <b>@tipoDoacao</b> para:  @Model.Nome, no valor de <b>@string.Format("{0:C}", @Model.Valor)</b></h2>
+    </div>
+    <div class="box-body">
+        <div class="col-md-6 well-sm">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Recebedor)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Recebedor)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Telefone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Telefone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.WhatsApp)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.WhatsApp)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Valor da Doação")
+                </dt>
+
+                <dd>
+                    <span class="alert-success text-bold"> @string.Format("{0:C}", @Model.Valor) </span>
+                </dd>
+
+
+                @*<dt>
+                        @Html.DisplayName("Nome do Banco")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Banco)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Titular)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Titular)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TipoConta)
+                    </dt>
+
+                    <dd>
+                        @if (@Model.TipoConta == 0)
+                        {
+                            @Html.DisplayName("POUPANÇA");
+                        }
+                        else
+                        {
+                            @Html.DisplayName("CONTA CORRENTE");
+                        }
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Agencia)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Agencia)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Conta)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Conta)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Operacao)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Operacao)
+                    </dd>*@
+                <dt>
+                    @Html.DisplayName("Banco(s)")
+                </dt>
+                @foreach (var item in @ViewBag.DadosConta)
+                {
+                    if (@item.Login == ID)
+                    {
+                        <dd>
+                            <a href="" class="modal-link" data-cliente="@item.ClienteId" data-banco="@item.BancoId">@item.Banco</a>
+                        </dd>
+                    }
+                }
+
+            </dl>
+
+        </div>
+
+        <div class="col-md-6 alert alert-warning">
+
+            <h4 class="text-bold">Envie o comprovante.</h4>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-instagram btn-enviar glyphicon glyphicon-transfer" type="button" data-id="@Model.ClienteId" data-doador="@Model.Doador" data-recebedor="@Model.Recebedor" data-nome="@Model.Nome" data-nivel="@Model.Nivel" data-tipo="@Model.Tipo" title="Enviar Comprovante para @Model.Nome"> Enviar Comprovante</button>
+            </div>
+            @*<br />
+                <br />
+                <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success">0%</div>
+                </div>*@
+
+        </div>
+
+        @*<div class="col-md-6 alert alert-warning">
+                @using (Html.BeginForm("EnviarArquivo", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "formEnviar", @class = "formEnviar" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+
+                        @Html.LabelFor(model => model.Comprovante, "Envie o comprovante", new { @class = "control-label text-bold" })
+                        @Html.HiddenFor(model => model.ClienteId, new { @class = "form-control" })
+                        @Html.HiddenFor(model => model.Recebedor, new { @class = "form-control" })
+                        @Html.HiddenFor(model => model.Doador, new { @class = "form-control" })
+                        @Html.HiddenFor(model => model.Nome, new { @class = "form-control" })
+                        @Html.HiddenFor(model => model.Nivel, new { @class = "form-control" })
+                        @Html.HiddenFor(model => model.Tipo, new { @class = "form-control" })
+
+                        <div class="input-group" data-provides="fileinput">
+                            <label class="input-group-btn">
+                                <span class="btn btn-default">
+                                    <input id="file" name="file" type="file" accept="image/jpg, image/png, document/.pdf" />
+                                    @Html.TextBoxFor(model => model.Comprovante, new { @type = "file", @class = "form-control", @accept = "image/x-png, image/gif, image/jpeg, image/jpg, document/.pdf", @maxlength = "2000" })
+                                    @Html.ValidationMessageFor(model => model.Comprovante)
+                                </span>
+                            </label>
+                        </div>
+                        <br />
+                        <button class="btn btn-sm btn-instagram btn-enviar" type="submit">Enviar Comprovante</button>
+                }
+            </div>*@
+
+        <div class="box-footer">
+            <span class="bb-alert text-bold">OBS: Os arquivos a serem enviados só e somente são permitidos no formado PDF ou imagem PNG, JPG ou JPEG.</span>
+        </div>
+    </div>
+</div>
+
+@*<div class="callout callout-success text-justify" role="alert">
+        <h5>
+            As doações são realizadas diretamente entre os participantes, você estará doando apenas por sua vontade para um de nossos outros afiliados, o sistema utiliza de uma fila para deixar justo que nenhum membro receba mais que o outro obedecendo a ordem de afiliação, caso faça sua doação você podera receber doações de possíveis novos membros.
+        </h5>
+    </div>*@

@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "ComoFunciona";
+}
+
+<div class="page-header">
+    <div class="bs-component">
+        <h1>Veja como funciona o <em>SistemaG9</em></h1>
+    </div>
+</div>
+
+<div class="lead text-justify">
+    <p>
+        O <span class="text-info"><b>SistemaG9</b></span> é um sistema de doação espontânea com o objetivo de ajudar a distribuir renda para seus participantes. Este sistema é uma ação entre amigos com uma ideia simples e até antiga, através de doações entre todos do grupo. Assim, o <span class="text-info"><b>SistemaG9</b></span> conseguirá fazer com que todos recebam um valor consideravelmente bom de doações.
+    </p>
+
+    <p class="lead text-justify">
+        Nós não somos uma empresa de MMN e sim um sistema de doação, portanto não possuímos CNPJ.
+    </p>
+    <p>
+        A ideia do <span class="text-info"><b>SistemaG9</b></span> é relativamente simples: Ao se cadastrar através de um link único que será o link de indicação, você doará o valor inicial para o amigo da vez.
+    </p>
+    <p>
+        Após isto, você já será um indicador participante e estará apto a receber doações diferenciadas e crescentes até o 4º nível.
+    </p>
+    <hr />
+    <p class="text-center">
+        <em><b>O sistema é baseado no Cód. Civil, Art. 538 c/c Art. 541 que rege sobre Doações.</b></em>
+    </p>
+</div>
+<div class="text-center">
+    @Html.ActionLink("QUERO PARTICIPAR!", "Create", "Cadastro", null, new { @class = "btn btn-primary btn-lg" })
+</div>
+<hr />
+<div class="pager">
+    <div class="bs-component">
+        <h1 class="text-justify">Legalidade</h1>
+    </div>
+    <div class="lead text-justify">
+        <p>
+            Esta ideia é relativamente antiga, o <span class="text-info"><b>SistemaG9</b></span> apenas criou uma ferramenta para gerenciar, facilitando e garantindo que todos possam participar e possam fazer esta ação entre amigos.
+        </p>
+        <p>
+            Este sistema é 100% legal e permitido pela legislação brasileira, que permite que doações de pequeno valor sejam feitas sem nenhum tipo de motivo ou declaração, além do fato de que os participantes depositam diretamente na conta dos próprios membros participantes do site.
+        </p>
+        <p>
+            É também importante citar que <span class="text-info"><b>SistemaG9</b></span> não tem nada a ver com esquemas de pirâmide, Marketing MultiNível ou coisas do tipo. Não vendemos nada e você não pode participar nem com mais nem com menos do que o valor inicial de R$ 50,00 (cinquenta reais).
+        </p>
+        <p>
+            O <span class="text-info"><b>SistemaG9</b></span> não possui uma forma de renda fixa, pois enquanto o participante estiver alocado no sistema, divulgando e participando das doações nos 4 (quatro) níveis, estará recebendo também doações. Uma vez que parar de doar (ver condições em item 12 do Termo de Uso) e, por conseguinte, de divulgar o próprio sistema o excluirá.
+        </p>
+    </div>
+    <hr />
+    <div class="bs-component">
+        <h1 class="text-justify">Missão</h1>
+    </div>
+    <div class="lead text-justify">
+        <p>
+            O <span class="text-info"><b>SistemaG9</b></span> tem a Missão de ajudar a todos, abdicando das indicações diretas, disponibilizando um link único, incentivando, sem pressão, a busca de seus 3 ou mais indicados, trabalhando as pessoas abaixo, numa projeção 3 x 3, proporcionando assim uma matriz equilibrada, impulsionando toda a rede para o crescimento, colocando os diretos com os que estão entrando e assim motivando todos para convidar mais e mais pessoas, levando-as a um crescimento exponencial. Todos recebendo cadastros diretos e, assim, potencializando seus ganhos.
+        </p>
+    </div>
+    <hr />
+    <div class="bs-component">
+        <h1 class="text-justify">Visão</h1>
+    </div>
+    <div class="lead text-justify">
+        Ser referência como o mais bem-sucedido Sistema de Ajuda Mútua do Brasil e buscar uma colocação de destaque no cenário mundial com a união de força, dedicação, comprometimento e responsabilidade de cada um dos participantes, com a finalidade de agregar bens que proporcionem uma melhor qualidade de vida e estabilidade financeira para cada um participante do <span class="text-info"><b>SistemaG9</b></span>.
+    </div>
+    <hr />
+    <div class="bs-component">
+        <h1 class="text-justify">Valores</h1>
+    </div>
+    <div class="lead text-justify">
+        <p>
+            Nossos valores são sustentados na responsabilidade, sendo amparados legalmente em nossas propostas, protegendo, desta forma, a integridade moral de nossos membros, promovendo a distribuição de renda de modo a alavancar o crescimento econômico, comprometidos com Honestidade, Solidariedade, Segurança e Respeito à Diversidade.
+        </p>
+    </div>
+</div>
+
+<div class="text-center">
+    @*@Html.ActionLink("QUERO PARTICIPAR!", "Create", "Cadastro", null, new { @class = "btn btn-primary btn-lg" })*@
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            //Aqui q está o segredo! -> olhe no _Layout.cshtml o li li-mnu-Home
+            $("#li-mnu-ComoFunciona").addClass("active");
+        });
+    </script>
+}

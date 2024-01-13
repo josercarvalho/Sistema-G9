@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home - Sistema G9";
+}
+
+<!-- Marketing e mensagens dobre o Site e suas funções
+    ================================================== -->
+
+<div class="jumbotron">
+    <h2><b>Sistema G9 de Rede Sustentável</b></h2>
+    <p class="lead text-justify">
+        O <span class="text-info"><b>SistemaG9</b></span> é um sistema de doação espontânea com o objetivo de ajudar a distribuir renda para seus participantes. Este sistema é uma ação entre amigos com uma ideia simples e até antiga, através de doações entre todos do grupo. Assim, o <span class="text-info"><b>SistemaG9</b></span> conseguirá fazer com que todos recebam um valor consideravelmente bom de doações.
+    </p>
+    <p>
+        <em>O sistema é baseado no Cód. Civil, Art. 538 c/c Art. 541 que rege sobre Doações.</em>
+    </p>
+    @Html.ActionLink("QUERO SABER MAIS!", "ComoFunciona", "Home", null, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("QUERO PARTICIPAR!", "Create", "Cadastro", null, new { @class = "btn btn-primary btn-lg" })
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-success text-justify">
+            <h2>100% legal</h2>
+            <h5>
+                Este sistema é 100% legal e amparada pela legislação brasileira que permite doações espontâneas de baixo valor sem declaração ou formalização, também não se tratando de marketing multinível ou pirâmide, pois os valores são depositados diretamente na conta dos participantes
+            </h5>
+            <p>
+                <label class="label-info">  O sistema é baseado no Cód. Civil, Art. 538 c/c Art. 541 que rege sobre Doações.</label>
+            </p>
+        </div>
+        <div class="text-center">
+            <img src="~/img/layout_topo_lei.jpg" alt="" class="img-thumbnail" />
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="~/img/Sozinho.png" alt="Você não está sozinho" class="img-responsive" />
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            //Aqui q está o segredo! -> olhe no _Layout.cshtml o li li-mnu-Home
+            $("#li-mnu-Home").addClass("active");
+        });
+    </script>
+}

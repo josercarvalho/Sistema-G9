@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Nivel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Escritorio/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border ">
+            <div class="col-md-7 col-xs-8">
+                <h3 class="box-title"><i class="fa fa-th-list"></i> Cadastro de Matrizes</h3>
+            </div>
+            <div class="box-tools pull-right">
+                @Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success", @Title = "Cadastrar" })
+                @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning", @title = "Tela Inicial" })
+            </div>
+        </div>
+
+        <div class="box-body">
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Matriz.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NivelMatriz)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Inicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Entradas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ValorEntrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Reentradas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ValorReentrada)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Matriz.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NivelMatriz)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Inicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fim)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Entradas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ValorEntrada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Reentradas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ValorReentrada)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.NivelId }) |
+                            @*@Html.ActionLink("Details", "Details", new { id = item.NivelId }) |*@
+                            @Html.ActionLink("Excluir", "Delete", new { id = item.NivelId })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div id="divResultado"></div>
+</section>
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    <div class="spin"></div>
+    <span>Aguarde ...</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

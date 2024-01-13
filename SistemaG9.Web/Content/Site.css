@@ -1,0 +1,298 @@
+﻿/*body {
+	padding-top: 60px;
+	padding-bottom: 20px;
+}*/
+
+body {
+	/*background: none repeat scroll 0% 0% #CCC;
+	background: #f0f0ed;
+	background-color: #f7f7f7;*/
+	color: #999;
+	margin: 0;
+	padding: 0;
+	padding-top: 60px;
+	padding-bottom: 20px;
+	margin-top: 25px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12.5px;
+	font-weight: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+body,
+input,
+select,
+textarea {
+	color: #373737;
+	font: 15px "Segoe UI","Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1.625;
+}
+
+input,
+select,
+textarea {
+	max-width: 380px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+	color: #b94a48;
+}
+
+.field-validation-valid {
+	display: none;
+}
+
+input.input-validation-error {
+	border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+	border: 0 none;
+}
+
+.validation-summary-errors {
+	color: #b94a48;
+}
+
+.validation-summary-valid {
+	display: none;
+}
+
+.margin-top {
+	margin-top: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+	background: white;
+}
+
+.main-footer {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+	/* Remove the padding we set earlier */
+	.masthead,
+	.marketing,
+	.footer {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+
+/* ordered list */
+ol.round {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+	ol.round li {
+		margin: 25px 0;
+		padding-left: 45px;
+	}
+
+		ol.round li.zero {
+			background: url("../img/orderedList0.png") no-repeat;
+		}
+
+		ol.round li.one {
+			background: url("../img/orderedList1.png") no-repeat;
+		}
+
+		ol.round li.two {
+			background: url("../img/orderedList2.png") no-repeat;
+		}
+
+		ol.round li.three {
+			background: url("../img/orderedList3.png") no-repeat;
+		}
+
+		ol.round li.four {
+			background: url("../img/orderedList4.png") no-repeat;
+		}
+
+		ol.round li.five {
+			background: url("../img/orderedList5.png") no-repeat;
+		}
+
+		ol.round li.six {
+			background: url("../img/orderedList6.png") no-repeat;
+		}
+
+		ol.round li.seven {
+			background: url("../img/orderedList7.png") no-repeat;
+		}
+
+		ol.round li.eight {
+			background: url("../img/orderedList8.png") no-repeat;
+		}
+
+		ol.round li.nine {
+			background: url("../img/orderedList9.png") no-repeat;
+		}
+
+/*
+	Controla a largura da tabela com barra de rolagem
+*/
+.FixedContainer {
+	float: right;
+	height: 250px;
+	width: 500px;
+	padding: 3px;
+	overflow: auto;
+}
+
+.FixedContent {
+	height: 100%;
+	padding: 1px;
+	overflow: auto;
+}
+
+.table tr:hover .btn-group-table {
+	visibility: visible;
+}
+
+.table tbody > tr > td {
+	vertical-align: middle;
+}
+
+.mnuTable {
+	width: 100px;
+}
+
+.btn-group-table {
+	visibility: hidden;
+}
+
+/*
+ * Animação de Processamentos
+ *
+ * Executado cada vez que uma atividade é enviada ao servidor para distração do usuário.
+ */
+.progresso {
+	display: none;
+	position: fixed;
+	top: 360px;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -100px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: white;
+	border: 0.5px solid black;
+	height: 90px;
+	width: 130px;
+}
+
+.ui-loader {
+	background: none repeat scroll 0 0 #828282;
+	/*background: none repeat scroll 0 0% rgba(130, 130, 130, 0.8);*/
+	border: 1px solid #454545;
+	box-shadow: 0 0 3px #B1B1B1, 0 1px 0 #D5D5D5 inset;
+	border-radius: 3px;
+	color: #FFF;
+	padding: 20px 30px;
+	position: fixed;
+	text-align: center;
+	text-shadow: 0 -1px #6D6D6D;
+	width: 200px;
+	z-index: 103;
+}
+
+.spin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	width: 32px;
+	height: 32px;
+	background: url('images/spinner_g.gif') no-repeat scroll 0 0 transparent;
+	background-color: transparent;
+	background-image: url('images/spinner_g.gif');
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0 0;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: auto auto;
+	opacity: 0.8;
+}
+
+#ajaxBusy {
+	background: #222222 url('images/ajax-loader-black.gif') 20px 50% no-repeat;
+	color: #ffffff;
+	display: block;
+	font-size: 140%;
+	height: 60px;
+	left: 50%;
+	line-height: 60px;
+	margin: -30px 0 0 -85px;
+	padding: 0 20px;
+	position: fixed;
+	text-align: right;
+	top: 50%;
+	width: 170px;
+	z-index: 99999;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+}
+
+	#ajaxBusy p {
+		margin: 0;
+	}
+
+.textomaiusculo {
+	text-transform: uppercase;
+}
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+	.btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 100px;
+		text-align: right;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		outline: none;
+		background: white;
+		cursor: inherit;
+		display: block;
+	}
+	
+.degradefundo {
+	background-image: url(../img/bg.jpg);
+	background-repeat: repeat-x;
+}

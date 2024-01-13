@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SistemaG9.Domain.Models.Nivel>
+
+<div class="box box-default">
+    <div class="box-header with-border ">
+        <h3 class="box-title"><i class="fa fa-th-list"></i><b> Lista de Níveis da Matriz</b> - @ViewBag.NomeMatriz</h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" type="button" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-remove"></i></button>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.MatrizId)*@
+                        #
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amigos)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Inicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Depositos)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valor)
+                    </th>
+                    @*<th></th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @if (!@Model.Any())
+                {
+                    <tr><td colspan="6" class="text-center"><h3><em>Sem Níveis para esta Matríz!</em></h3></td></tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MatrizId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amigos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Inicio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Depositos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+                            @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.NivelId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.NivelId }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.NivelId })
+                                </td>*@
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
